@@ -1,16 +1,26 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <title>やること</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="src/styles.css" />
+  </head>
 
-<head>
-	<title>Parcel Sandbox</title>
-	<meta charset="UTF-8" />
-</head>
+  <body>
+    <div class="app_container">
+      <h1 class="app_heading">
+        <img src="src/images/header_img.png" alt="" />
+      </h1>
 
-<body>
-	<div id="app"></div>
+      <div class="input_area">
+        <input type="text" class="input" id="input" placeholder="やること" />
+        <button class="add_btn" id="add_btn">ついか</button>
+      </div>
+    </div>
 
-	<script src="src/index.js">
-	</script>
-</body>
-
+    <div class="incomplete_area">
+      <h2>おわってないよー</h2>
+    </div>
+    <script src="src/index.js"></script>
+  </body>
 </html>
