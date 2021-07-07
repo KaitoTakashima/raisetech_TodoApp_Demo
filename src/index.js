@@ -3,6 +3,16 @@ const onClickAdd = () => {
   const inputText = document.getElementById("add_text").value;
   document.getElementById("add_text").value = "";
 
+  createIncompleteList(inputText);
+};
+
+//未完了リストから指定の要素を削除
+const deleteFromIncompleteList = (target) => {
+  document.getElementById("incomplete_list").removeChild(target);
+};
+
+//未完了リストに追加する関数
+const createIncompleteList = (text) => {
   //liタグを生成
   const li = document.createElement("li");
   li.className = "incomplete_item list_item";
@@ -10,7 +20,7 @@ const onClickAdd = () => {
   //pタグを生成
   const p = document.createElement("p");
   p.className = "incomplete_item_name list_item_name";
-  p.innerText = inputText;
+  p.innerText = text;
 
   //divタグを生成
   const div = document.createElement("div");
@@ -43,6 +53,15 @@ const onClickAdd = () => {
     //button（戻す）タグを生成
     const return_btn = document.createElement("button");
     return_btn.className = "button";
+    return_btn.addEventListener("click", () => {
+      //押された戻すボタンの親タグを完了リストから削除
+      const deleteTarget = return_btn.closest(".complete_item");
+      document.getElementById("complete_list").removeChild(deleteTarget);
+
+      //テキストを取得
+      const text = deleteTarget.firstElementChild.innerText;
+      createIncompleteList(text);
+    });
 
     //imgタグの生成
     const return_img = document.createElement("img");
@@ -50,7 +69,6 @@ const onClickAdd = () => {
 
     //button（戻す）タグの子要素にimgタグ
     return_btn.appendChild(return_img);
-    console.log(return_btn);
 
     //divタグの子要素にbuttonタグを追加
     div.appendChild(return_btn);
@@ -93,11 +111,6 @@ const onClickAdd = () => {
 
   //未完了リストに追加
   document.getElementById("incomplete_list").appendChild(li);
-
-  //未完了リストから指定の要素を削除
-  const deleteFromIncompleteList = (target) => {
-    document.getElementById("incomplete_list").removeChild(target);
-  };
 };
 
 document
